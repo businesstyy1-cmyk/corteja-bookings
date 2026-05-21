@@ -1,0 +1,15 @@
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+
+export function useMyShop() {
+  return useQuery({
+    queryKey: ["my-shop"],
+    queryFn: async () => {
+      const { data: user } = await supabase.auth.getUser();
+      if (!user.user) return null;
+      const { data, error } = await supabase.from("shops").select("*").eq("owner_id", user.user.id).maybeSingle();
+      if (error) throw error;
+      return data;
+    },
+  });
+}
