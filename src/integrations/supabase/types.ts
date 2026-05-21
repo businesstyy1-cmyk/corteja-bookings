@@ -14,16 +14,294 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      appointments: {
+        Row: {
+          barber_id: string | null
+          client_id: string | null
+          client_name: string
+          client_phone: string
+          created_at: string
+          id: string
+          notes: string | null
+          price: number | null
+          scheduled_at: string
+          service_id: string | null
+          shop_id: string
+          status: Database["public"]["Enums"]["appt_status"]
+        }
+        Insert: {
+          barber_id?: string | null
+          client_id?: string | null
+          client_name: string
+          client_phone: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          price?: number | null
+          scheduled_at: string
+          service_id?: string | null
+          shop_id: string
+          status?: Database["public"]["Enums"]["appt_status"]
+        }
+        Update: {
+          barber_id?: string | null
+          client_id?: string | null
+          client_name?: string
+          client_phone?: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          price?: number | null
+          scheduled_at?: string
+          service_id?: string | null
+          shop_id?: string
+          status?: Database["public"]["Enums"]["appt_status"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appointments_barber_id_fkey"
+            columns: ["barber_id"]
+            isOneToOne: false
+            referencedRelation: "barbers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "appointments_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "appointments_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "appointments_shop_id_fkey"
+            columns: ["shop_id"]
+            isOneToOne: false
+            referencedRelation: "shops"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      barbers: {
+        Row: {
+          active: boolean
+          created_at: string
+          id: string
+          name: string
+          photo_url: string | null
+          shop_id: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          name: string
+          photo_url?: string | null
+          shop_id: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          name?: string
+          photo_url?: string | null
+          shop_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "barbers_shop_id_fkey"
+            columns: ["shop_id"]
+            isOneToOne: false
+            referencedRelation: "shops"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      clients: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          last_appointment_at: string | null
+          name: string
+          phone: string
+          shop_id: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          last_appointment_at?: string | null
+          name: string
+          phone: string
+          shop_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          last_appointment_at?: string | null
+          name?: string
+          phone?: string
+          shop_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "clients_shop_id_fkey"
+            columns: ["shop_id"]
+            isOneToOne: false
+            referencedRelation: "shops"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string | null
+          id: string
+          phone: string | null
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string | null
+          id: string
+          phone?: string | null
+        }
+        Update: {
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          phone?: string | null
+        }
+        Relationships: []
+      }
+      services: {
+        Row: {
+          active: boolean
+          created_at: string
+          description: string | null
+          duration_minutes: number
+          id: string
+          image_url: string | null
+          name: string
+          price: number
+          shop_id: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          description?: string | null
+          duration_minutes?: number
+          id?: string
+          image_url?: string | null
+          name: string
+          price?: number
+          shop_id: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          description?: string | null
+          duration_minutes?: number
+          id?: string
+          image_url?: string | null
+          name?: string
+          price?: number
+          shop_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "services_shop_id_fkey"
+            columns: ["shop_id"]
+            isOneToOne: false
+            referencedRelation: "shops"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      shops: {
+        Row: {
+          city: string | null
+          created_at: string
+          id: string
+          logo_url: string | null
+          name: string
+          owner_id: string
+          phone: string | null
+          slug: string
+          status: Database["public"]["Enums"]["shop_status"]
+        }
+        Insert: {
+          city?: string | null
+          created_at?: string
+          id?: string
+          logo_url?: string | null
+          name: string
+          owner_id: string
+          phone?: string | null
+          slug: string
+          status?: Database["public"]["Enums"]["shop_status"]
+        }
+        Update: {
+          city?: string | null
+          created_at?: string
+          id?: string
+          logo_url?: string | null
+          name?: string
+          owner_id?: string
+          phone?: string | null
+          slug?: string
+          status?: Database["public"]["Enums"]["shop_status"]
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      owns_shop: { Args: { _shop_id: string }; Returns: boolean }
+      shop_is_active: { Args: { _shop_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "super_admin" | "owner"
+      appt_status: "pending" | "confirmed" | "completed" | "cancelled"
+      shop_status: "active" | "suspended" | "blocked" | "pending"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +428,10 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["super_admin", "owner"],
+      appt_status: ["pending", "confirmed", "completed", "cancelled"],
+      shop_status: ["active", "suspended", "blocked", "pending"],
+    },
   },
 } as const
