@@ -18,7 +18,7 @@ function ClientsPage() {
     const msg = encodeURIComponent(`Olá ${c.name}, sentimos a sua falta na ${shop?.name}! Reserve o seu corte: ${typeof window !== "undefined" ? window.location.origin : ""}/${shop?.slug}`);
     return `https://wa.me/${phone}?text=${msg}`;
   };
-  const daysSince = (d?: string) => d ? Math.floor((Date.now() - new Date(d).getTime()) / 86400000) : null;
+  const daysSince = (d?: string | null) => d ? Math.floor((Date.now() - new Date(d).getTime()) / 86400000) : null;
 
   return (
     <div className="space-y-6">

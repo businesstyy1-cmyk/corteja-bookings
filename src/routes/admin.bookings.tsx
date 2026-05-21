@@ -23,7 +23,7 @@ function Bookings() {
     },
   });
 
-  const update = async (id: string, status: string) => {
+  const update = async (id: string, status: "pending" | "confirmed" | "completed" | "cancelled") => {
     const { error } = await supabase.from("appointments").update({ status }).eq("id", id);
     if (error) return toast.error(error.message);
     toast.success("Atualizado");

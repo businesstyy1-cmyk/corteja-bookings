@@ -14,7 +14,7 @@ function SuperAdmin() {
     queryFn: async () => (await supabase.from("shops").select("*").order("created_at", { ascending: false })).data ?? [],
   });
 
-  const setStatus = async (id: string, status: string) => {
+  const setStatus = async (id: string, status: "active" | "suspended" | "blocked" | "pending") => {
     const { error } = await supabase.from("shops").update({ status }).eq("id", id);
     if (error) return toast.error(error.message);
     toast.success("Atualizado");

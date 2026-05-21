@@ -183,7 +183,7 @@ function Modal({ children, onClose, title }: { children: React.ReactNode; onClos
   );
 }
 
-function Input({ label, value, onChange, type = "text" }: any) {
+function Input({ label, value, onChange, type = "text" }: { label: string; value: any; onChange: (v: string) => void; type?: string }) {
   return <div><label className="text-sm font-medium">{label}</label>
     <input type={type} value={value} onChange={(e) => onChange(e.target.value)}
       className="mt-1 h-11 w-full rounded-md border border-input bg-background px-3 text-sm outline-none focus:ring-2 focus:ring-ring" /></div>;
