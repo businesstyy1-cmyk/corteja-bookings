@@ -15,7 +15,7 @@ function PublicShop() {
   const [date, setDate] = useState<string>("");
   const [time, setTime] = useState<string>("");
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("+258 ");
   const [submitting, setSubmitting] = useState(false);
 
   const { data: shop, isLoading: shopLoading } = useQuery({
@@ -156,7 +156,8 @@ function PublicShop() {
               <div>
                 <label className="text-sm font-medium">Data</label>
                 <input type="date" min={minDate} value={date} onChange={(e) => setDate(e.target.value)}
-                  className="mt-1 h-11 w-full rounded-md border border-input bg-background px-3 text-sm" />
+                  style={{ colorScheme: "light" }}
+                  className="mt-1 h-11 w-full rounded-md border border-input bg-background px-3 text-sm text-foreground" />
               </div>
               <div>
                 <label className="text-sm font-medium">Hora</label>
@@ -178,9 +179,11 @@ function PublicShop() {
           <Section title="Os seus dados" onBack={() => setStep("datetime")}>
             <div className="space-y-3">
               <div><label className="text-sm font-medium">Nome</label>
-                <input value={name} onChange={(e) => setName(e.target.value)} className="mt-1 h-11 w-full rounded-md border border-input bg-background px-3 text-sm" /></div>
+                <input value={name} onChange={(e) => setName(e.target.value)} className="mt-1 h-11 w-full rounded-md border border-input bg-background px-3 text-sm text-foreground" /></div>
               <div><label className="text-sm font-medium">Telefone (WhatsApp)</label>
-                <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+258 ..." className="mt-1 h-11 w-full rounded-md border border-input bg-background px-3 text-sm" /></div>
+                <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+258 84 123 4567" className="mt-1 h-11 w-full rounded-md border border-input bg-background px-3 text-sm text-foreground" />
+                <p className="mt-1 text-xs text-muted-foreground">Pré-preenchido com +258 (Moçambique). Pode alterar o código se necessário.</p>
+              </div>
               <div className="rounded-md border border-border bg-card p-3 text-sm">
                 <p className="text-muted-foreground text-xs uppercase">Resumo</p>
                 <p className="mt-1">{selectedService?.name} · {date} {time}</p>
