@@ -105,26 +105,22 @@ function PublicShop() {
 
         {step === "service" && (
           <Section title="Escolha o seu corte">
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {services?.map((s) => (
                 <button key={s.id} onClick={() => { setServiceId(s.id); setStep("barber"); }}
-                  className={`overflow-hidden rounded-xl border bg-card text-left transition ${serviceId === s.id ? "border-accent ring-2 ring-accent" : "border-border hover:border-foreground/30"}`}>
-                  <div className="aspect-[4/3] bg-surface">
-                    {s.image_url ? <img src={s.image_url} alt={s.name} className="h-full w-full object-cover" loading="lazy" />
+                  className={`group flex flex-col overflow-hidden rounded-2xl border bg-card text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${serviceId === s.id ? "border-accent ring-2 ring-accent" : "border-border hover:border-foreground/30"}`}>
+                  <div className="aspect-[4/3] overflow-hidden bg-surface">
+                    {s.image_url ? <img src={s.image_url} alt={s.name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                       : <div className="flex h-full items-center justify-center text-muted-foreground"><ImagePlus className="h-8 w-8" /></div>}
                   </div>
-                  <div className="p-3">
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <p className="font-semibold">{s.name}</p>
-                        <p className="text-xs text-muted-foreground">{s.duration_minutes} min</p>
-                      </div>
-                      <span className="font-display text-lg text-accent">{Number(s.price).toLocaleString("pt-MZ")} MZN</span>
-                    </div>
+                  <div className="flex flex-1 flex-col gap-1 p-3">
+                    <p className="font-semibold leading-tight">{s.name}</p>
+                    <p className="text-xs text-muted-foreground">{s.duration_minutes} min</p>
+                    <span className="mt-auto pt-1 font-display text-base text-accent sm:text-lg">{Number(s.price).toLocaleString("pt-MZ")} MZN</span>
                   </div>
                 </button>
               ))}
-              {services?.length === 0 && <p className="text-sm text-muted-foreground">Sem serviços disponíveis.</p>}
+              {services?.length === 0 && <p className="col-span-2 text-sm text-muted-foreground">Sem serviços disponíveis.</p>}
             </div>
           </Section>
         )}
