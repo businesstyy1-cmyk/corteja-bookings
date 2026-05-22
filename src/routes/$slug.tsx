@@ -201,7 +201,7 @@ function PublicShop() {
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-accent text-accent-foreground"><Check className="h-6 w-6" /></div>
             <h2 className="mt-4 text-xl font-semibold">Reserva enviada!</h2>
             <p className="mt-2 text-sm text-muted-foreground">{shop.name} vai confirmar a sua marcação em breve.</p>
-            <button onClick={() => { setStep("service"); setServiceId(null); setBarberId(null); setDate(""); setTime(""); setName(""); setPhone(""); }}
+            <button onClick={() => { setStep("service"); setServiceId(null); setBarberId(null); setDate(""); setTime(""); setName(""); setPhone("+258 "); }}
               className="mt-6 inline-flex h-10 items-center rounded-md border border-border px-4 text-sm">Nova reserva</button>
           </div>
         )}
