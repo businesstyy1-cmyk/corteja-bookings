@@ -2,7 +2,7 @@ import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Scissors, MapPin, Phone, Check, ImagePlus } from "lucide-react";
+import { Scissors, MapPin, Phone, Check, ImagePlus, Calendar } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/$slug")({ component: PublicShop });
