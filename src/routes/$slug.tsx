@@ -2,7 +2,7 @@ import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Scissors, MapPin, Phone, Check, ImagePlus } from "lucide-react";
+import { Scissors, MapPin, Phone, Check, ImagePlus, Calendar } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/$slug")({ component: PublicShop });
@@ -148,12 +148,23 @@ function PublicShop() {
 
         {step === "datetime" && (
           <Section title="Escolha a data e hora" onBack={() => setStep("barber")}>
-            <div className="space-y-4">
+            <div className="space-y-5">
               <div>
-                <label className="text-sm font-medium">Data</label>
-                <input type="date" min={minDate} value={date} onChange={(e) => setDate(e.target.value)}
+                <label className="flex items-center gap-2 text-base font-semibold text-foreground">
+                  <Calendar className="h-4 w-4 text-accent" />
+                  Selecionar data da marcação
+                </label>
+                <p className="mt-1 text-xs text-muted-foreground">Escolha o dia do seu atendimento para continuar.</p>
+                <input
+                  type="date"
+                  min={minDate}
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
                   style={{ colorScheme: "light" }}
-                  className="mt-1 h-11 w-full rounded-md border border-input bg-background px-3 text-sm text-foreground" />
+                  className={`mt-2 h-12 w-full rounded-lg border-2 px-4 text-base text-foreground transition focus:outline-none focus:ring-2 focus:ring-accent/40 ${
+                    date ? "border-accent bg-accent/5" : "border-input bg-background"
+                  }`}
+                />
               </div>
               <div>
                 <label className="text-sm font-medium">Hora</label>
